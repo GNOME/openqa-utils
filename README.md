@@ -75,3 +75,7 @@ test:
     reports:
       junit: junit.xml
 ```
+
+## Licensing
+
+Where not otherwise noted the tests are licensed under the MIT license.
