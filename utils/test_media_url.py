@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 
+"""
+Generates URLs to GNOME OS disk images
+
+This script generates URLs to a specific GNOME OS disk images, to be used from
+testing pipelines instead of hard-coding URLs.
+"""
+
 import argparse
 
 parser = argparse.ArgumentParser(description="URLs for GNOME test media")

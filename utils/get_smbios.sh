@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Generates common SMBIOS arguments used in test scenario definitions YAML files.
+
 set -eu
 
 script_dir="$(dirname $0)"
