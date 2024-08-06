@@ -42,14 +42,12 @@
       <gnome:userid>nwhillans</gnome:userid>
     </foaf:Person>
   </maintainer>
-  <!-- Awaiting developer access
   <maintainer>
     <foaf:Person>
-      <foaf:name>Martin Abente Laheye</foaf:name>
-      <foaf:mbox rdf:resource="mailto:martin.abente.laheye@gmail.com" />
+      <foaf:name>Martin Abente Lahaye</foaf:name>
+      <foaf:mbox rdf:resource="mailto:malahaye@gnome.org" />
       <gnome:userid>malahaye</gnome:userid>
     </foaf:Person>
   </maintainer>
-  -->
 
 </Project>
