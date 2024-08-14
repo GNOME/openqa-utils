@@ -12,6 +12,7 @@ import argparse
 parser = argparse.ArgumentParser(description="URLs for GNOME test media")
 group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument("--latest", action="store_true", help="Use latest")
+group.add_argument("--stable-branch", type=str, help="Specify stable branch")
 group.add_argument("--tag", type=str, help="Specify tag")
 group.add_argument("--pipeline", type=int, help="Specify pipeline ID")
 parser.add_argument(
@@ -50,6 +51,9 @@ version = args.tag or args.pipeline
 if args.latest:
     filename = image_filename(args.kind, args.variant, args.arch)
     print(f"https://os.gnome.org/download/latest/{filename}")
+elif args.stable_branch:
+    filename = image_filename(args.kind, args.variant, args.arch)
+    print(f"https://os.gnome.org/download/stable/{args.stable_branch}/{filename}")
 else:
     if args.variant == "sysupdate":
         if args.kind in ["installer", "iso"]:
