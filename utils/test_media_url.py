@@ -42,9 +42,11 @@ def image_filename(kind, variant, arch) -> str:
     # this script.
     if kind in ["installer", "iso"]:
         extension = "iso"
+        prefix = "gnome_os_installer"
     else:
         extension = "img.xz"
-    return f"{kind}_{variant}_{arch}.{extension}"
+        prefix = f"{kind}_{variant}"
+    return f"{prefix}_{arch}.{extension}"
 
 
 version = args.tag or args.pipeline
