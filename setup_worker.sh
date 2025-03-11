@@ -24,3 +24,6 @@ EOF
 
 echo "workers.ini file below:"
 cat /etc/openqa/workers.ini
+
+echo date
+date
