@@ -21,3 +21,6 @@ WORKER_HOSTNAME = $(hostname).no-route.example.com
 # See <https://gitlab.gnome.org/GNOME/openqa-tests/-/issues/126>
 CRITICAL_LOAD_AVG_THRESHOLD = 100
 EOF
+
+echo "workers.ini file below:"
+cat /etc/openqa/workers.ini
