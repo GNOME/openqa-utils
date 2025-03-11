@@ -17,4 +17,7 @@ HOST = $OPENQA_HOST
 # Hostname autodetection fails if hostname isn't an FQDN.
 # Set hostname to explicitly allow this kind of "bad" hostname.
 WORKER_HOSTNAME = $(hostname).no-route.example.com
+# This limit isn't helpful due to the unusual way GNOME's openQA provides workers.
+# See <https://gitlab.gnome.org/GNOME/openqa-tests/-/issues/126>
+CRITICAL_LOAD_AVG_THRESHOLD = 0
 EOF
