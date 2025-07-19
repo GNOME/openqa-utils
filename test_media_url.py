@@ -42,7 +42,7 @@ def image_filename(kind, variant, arch) -> str:
     # this script.
     if kind in ["installer", "iso"]:
         extension = "iso"
-        prefix = "gnome_os_installer"
+        prefix = "live"
     else:
         extension = "img.xz"
         prefix = f"{kind}_{variant}"
@@ -59,11 +59,11 @@ elif args.stable_branch:
 else:
     if args.variant == "sysupdate":
         if args.kind in ["installer", "iso"]:
-            print(f"https://os.gnome.org/download/{version}/gnome_os_sysupdate_installer_{version}-x86_64.iso")
+            print(f"https://os.gnome.org/download/{version}/live_{version}-x86_64.iso")
         elif args.kind == "disk":
             print(f"https://os.gnome.org/download/{version}/disk_sysupdate_{version}-x86_64.img.xz")
     else:
         if args.kind in ["installer", "iso"]:
-            print(f"https://os.gnome.org/download/{version}/gnome_os_installer_{version}.iso")
+            print(f"https://os.gnome.org/download/{version}/live_{version}.iso")
         elif args.kind == "disk":
             print(f"https://os.gnome.org/download/{version}/disk_{version}.img.xz")
