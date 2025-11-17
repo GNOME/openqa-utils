@@ -16,12 +16,6 @@ group.add_argument("--stable-branch", type=str, help="Specify stable branch")
 group.add_argument("--tag", type=str, help="Specify tag")
 group.add_argument("--pipeline", type=int, help="Specify pipeline ID")
 parser.add_argument(
-    "--kind", "--type",
-    required=True,
-    choices=["installer", "iso", "disk"],
-    help="Specify type (installer or disk)"
-)
-parser.add_argument(
     "--arch",
     default="x86_64",
     choices=["x86_64"],
@@ -31,27 +25,17 @@ parser.add_argument(
 args = parser.parse_args()
 
 
-def image_filename(kind, arch) -> str:
-    # We allow kind="iso" for backwards compatibility with older versions of
-    # this script.
-    if kind in ["installer", "iso"]:
-        extension = "iso"
-        prefix = "live"
-    else:
-        extension = "img.xz"
-        prefix = f"{kind}"
-    return f"{prefix}_{arch}.{extension}"
+def image_filename(arch) -> str:
+    prefix = "gnome_os"
+    return f"{prefix}_{arch}.iso"
 
 
 version = args.tag or args.pipeline
 if args.latest:
-    filename = image_filename(args.kind, args.arch)
+    filename = image_filename(args.arch)
     print(f"https://os.gnome.org/download/latest/{filename}")
 elif args.stable_branch:
-    filename = image_filename(args.kind, args.arch)
+    filename = image_filename(args.arch)
     print(f"https://os.gnome.org/download/stable/{args.stable_branch}/{filename}")
 else:
-    if args.kind in ["installer", "iso"]:
-        print(f"https://os.gnome.org/download/{version}/live_{version}-x86_64.iso")
-    elif args.kind == "disk":
-        print(f"https://os.gnome.org/download/{version}/disk_sysupdate_{version}-x86_64.img.xz")
+    print(f"https://os.gnome.org/download/{version}/gnome_os_{version}-x86_64.iso")
