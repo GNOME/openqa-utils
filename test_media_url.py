@@ -22,12 +22,6 @@ parser.add_argument(
     help="Specify type (installer or disk)"
 )
 parser.add_argument(
-    "--variant",
-    default="ostree",
-    choices=["sysupdate", "ostree"],
-    help="Specify variant (sysupdate or ostree)"
-)
-parser.add_argument(
     "--arch",
     default="x86_64",
     choices=["x86_64"],
@@ -37,7 +31,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 
-def image_filename(kind, variant, arch) -> str:
+def image_filename(kind, arch) -> str:
     # We allow kind="iso" for backwards compatibility with older versions of
     # this script.
     if kind in ["installer", "iso"]:
@@ -45,25 +39,19 @@ def image_filename(kind, variant, arch) -> str:
         prefix = "live"
     else:
         extension = "img.xz"
-        prefix = f"{kind}_{variant}"
+        prefix = f"{kind}"
     return f"{prefix}_{arch}.{extension}"
 
 
 version = args.tag or args.pipeline
 if args.latest:
-    filename = image_filename(args.kind, args.variant, args.arch)
+    filename = image_filename(args.kind, args.arch)
     print(f"https://os.gnome.org/download/latest/{filename}")
 elif args.stable_branch:
-    filename = image_filename(args.kind, args.variant, args.arch)
+    filename = image_filename(args.kind, args.arch)
     print(f"https://os.gnome.org/download/stable/{args.stable_branch}/{filename}")
 else:
-    if args.variant == "sysupdate":
-        if args.kind in ["installer", "iso"]:
-            print(f"https://os.gnome.org/download/{version}/live_{version}-x86_64.iso")
-        elif args.kind == "disk":
-            print(f"https://os.gnome.org/download/{version}/disk_sysupdate_{version}-x86_64.img.xz")
-    else:
-        if args.kind in ["installer", "iso"]:
-            print(f"https://os.gnome.org/download/{version}/live_{version}.iso")
-        elif args.kind == "disk":
-            print(f"https://os.gnome.org/download/{version}/disk_{version}.img.xz")
+    if args.kind in ["installer", "iso"]:
+        print(f"https://os.gnome.org/download/{version}/live_{version}-x86_64.iso")
+    elif args.kind == "disk":
+        print(f"https://os.gnome.org/download/{version}/disk_sysupdate_{version}-x86_64.img.xz")
