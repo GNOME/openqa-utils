@@ -11,7 +11,7 @@ job_ids=$@
 job_check() {
     job_id="$1"
     openqa-cli api --apikey $OPENQA_API_KEY \
-        --apisecret $OPENQA_API_KEY \
+        --apisecret $OPENQA_API_SECRET \
         --host $OPENQA_HOST \
         jobs/${job_id}
 }
